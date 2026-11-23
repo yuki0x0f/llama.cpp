@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-26.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 120
 
     steps:
@@ -23,7 +23,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y \
             git cmake ninja-build build-essential \
-            gcc-14 g++-14 \
             libcurl4-openssl-dev zip patchelf
 
       - name: Install CUDA Toolkit
@@ -42,9 +41,9 @@ jobs:
         run: |
           cmake -S . -B build -G Ninja \
             -DCMAKE_BUILD_TYPE=Release \
-            -DCMAKE_C_COMPILER=/usr/bin/gcc-14 \
-            -DCMAKE_CXX_COMPILER=/usr/bin/g++-14 \
-            -DCMAKE_CUDA_HOST_COMPILER=/usr/bin/g++-14 \
+            -DCMAKE_C_COMPILER=/usr/bin/gcc \
+            -DCMAKE_CXX_COMPILER=/usr/bin/g++ \
+            -DCMAKE_CUDA_HOST_COMPILER=/usr/bin/g++ \
             -DGGML_CUDA=ON \
             -DCMAKE_CUDA_ARCHITECTURES=75 \
             -DGGML_NATIVE=OFF \
