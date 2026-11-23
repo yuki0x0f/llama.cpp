@@ -6,7 +6,7 @@ on:
       tag:
         description: "llama.cpp Git tag"
         required: true
-        default: "b12248"
+        default: "b12653"
         type: string
 
 permissions:
@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 120
 
     steps:
@@ -26,9 +26,9 @@ jobs:
             libcurl4-openssl-dev zip patchelf
 
       - name: Install CUDA Toolkit
-        uses: Jimver/cuda-toolkit@v0.2.35
+        uses: Jimver/cuda-toolkit@v0.2.36
         with:
-          cuda: '12.8.1'
+          cuda: '12.9.2'
 
       - name: Checkout llama.cpp
         uses: actions/checkout@v4
@@ -75,7 +75,7 @@ jobs:
           llama-server NVIDIA T4 build
           Architecture: Linux x86_64
           CUDA architecture: sm_75
-          CUDA Toolkit: 12.8.1
+          CUDA Toolkit: 12.9.2
 
           Run:
           LD_LIBRARY_PATH="$PWD/lib:$PWD/cuda-lib64:$LD_LIBRARY_PATH" \
